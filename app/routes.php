@@ -26,3 +26,10 @@ Route::get('nombre/{nombre?}', function($nombre = null)
 {
     echo "Hola $nombre";
 });
+
+Route::get('admin/edit', function()
+{
+    return View::make('admin/edit')->with(array(
+        'title' => 'Tutorial 3 de Laravel 4'
+    ));
+});
