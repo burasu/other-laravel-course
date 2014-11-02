@@ -34,3 +34,5 @@ Route::get('admin/edit', function()
         'name' => 'Blas',
     ));
 });
+
+Route::get('home/index', 'HomeController@index');
