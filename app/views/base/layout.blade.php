@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('titulo')</title>
+    {{ HTML::style('css/bootstrap.min.css') }}
 </head>
 <body>
-    <div style="background: #eee; width: 300px">
-        @yield('sidebar')
-    </div>
-
-    <div style="background: #eee; width: 500px">
-        @yield('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                @yield('content')
+            </div>
+        </div>
     </div>
 </body>
 </html>

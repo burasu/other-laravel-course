@@ -41,3 +41,8 @@ Route::get('home', function()
 {
     return View::make('home')->with(array('titulo' => 'Blade en Laravel 4', 'sidebar' => 'sidebar', 'content' => 'content'));
 });
+
+Route::post('login', function()
+{
+    var_dump(Input::all());
+});
