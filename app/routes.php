@@ -36,3 +36,8 @@ Route::get('admin/edit', function()
 });
 
 Route::get('home/index', 'HomeController@index');
+
+Route::get('home', function()
+{
+    return View::make('home')->with(array('titulo' => 'Blade en Laravel 4', 'sidebar' => 'sidebar', 'content' => 'content'));
+});
