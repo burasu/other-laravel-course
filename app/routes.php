@@ -42,7 +42,48 @@ Route::get('home', function()
     return View::make('home')->with(array('titulo' => 'Blade en Laravel 4', 'sidebar' => 'sidebar', 'content' => 'content'));
 });
 
-Route::post('login', function()
+Route::post('registro', function()
 {
-    var_dump(Input::all());
+    // Almacenamos los objetos que se guardarán en la BD
+    $registerData = array(
+        'email'    => e(Input::get('email')),
+        'password' => Hash::make(e(Input::get('password')))
+    );
+
+    // Definimos la regla de validación.
+    $reglas = array(
+        'email'    => 'required|email|unique:users',
+        'password' => 'required|confirmed|min:6|max:100'
+    );
+
+    // Mensajes de error
+    $mensajes = array(
+        'required'  => 'El campo :attribute es obligatorio',
+        'min'       => 'El campo :attribute no puede tener menos de :min carácteres',
+        'max'       => 'El campo :attribute no puede tener más de :max carácteres',
+        'email'     => 'El camop :attribute debe ser un email válido',
+        'unique'    => 'El email ya está ingresado en la base de datos',
+        'confirmed' => 'Los passwords no coinciden'
+    );
+
+
+    // Definimos las validaciones pasandole las reglas y los mensajes
+    $validation = Validator::make(Input::all(), $reglas, $mensajes);
+
+    if ($validation->fails())
+    {
+        // withErrors nos devuelve los campos que fallaron.
+        // withInputs nos devuelve los campos antiguos para no tener que reescribir.
+        return Redirect::to('home')->withErrors($validation)->withInput();
+    }
+    else
+    {
+        $user = new User($registerData);
+        $user->save();
+
+        if ($user)
+        {
+            return Redirect::to('home')->with(array('registrado' => 'Te has registrado correctamente'));
+        }
+    }
 });
