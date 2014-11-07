@@ -8,7 +8,14 @@
 
     <h1 class="text-center">Formuarios y html en Laravel 4</h1><hr/>
 
-    
+    @if($errors->has())
+        <div class="alert alert-danger">
+            @foreach($errors->all('<p>:message</p>') as $message)
+                {{ $message }}
+            @endforeach
+        </div>
+    @endif
+
     {{ Form::open(array('url' => 'registro')) }}
 
         <div class="form-group">
@@ -22,8 +29,8 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('password_confirm', 'Confirma el password') }}
-            {{ Form::password('password_confirm', array('class' => 'form-control')) }}
+            {{ Form::label('password_confirmation', 'Confirma el password') }}
+            {{ Form::password('password_confirmation', array('class' => 'form-control')) }}
         </div>
 
         {{ Form::submit('Registro', array('class' => 'btn btn-success pull-right')) }}
