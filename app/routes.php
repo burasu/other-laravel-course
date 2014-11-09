@@ -67,8 +67,17 @@ Route::get("usuarios", function()
 
     var_dump(DB::table('users')->toSQL());
 
+    // Ejemplo de recuperación de datos de una tabla.
     foreach($users as $user)
     {
         echo "<br />", $user->email;
     }
+});
+
+Route::get("posts/{id}", function ($id)
+{
+    // Ejemplo de recuperación de valores por parámetros
+    $posts = DB::table('posts')->where("id", $id)->get();
+
+    var_dump($posts);
 });
