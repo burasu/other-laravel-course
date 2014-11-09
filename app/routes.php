@@ -91,5 +91,6 @@ Route::get("paginacion/{offset}/{limit}", function($offset, $limit)
 
 Route::get("pluck/{id}", function($id)
 {
-     
+    $posts = DB::table("posts")->where("user_id", $id)->pluck("title");
+    var_dump($posts);
 });
