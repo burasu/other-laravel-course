@@ -64,5 +64,11 @@ Route::get('fetchData', function()
 Route::get("usuarios", function()
 {
     $users = DB::table('users')->get();
+
     var_dump(DB::table('users')->toSQL());
+
+    foreach($users as $user)
+    {
+        echo "<br />", $user->email;
+    }
 });
