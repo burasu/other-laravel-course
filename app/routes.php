@@ -60,3 +60,9 @@ Route::get('fetchData', function()
         App::abort(404);
     }
 });
+
+Route::get("usuarios", function()
+{
+    $users = DB::table('users')->get();
+    var_dump(DB::table('users')->toSQL());
+});
