@@ -94,3 +94,10 @@ Route::get("pluck/{id}", function($id)
     $posts = DB::table("posts")->where("user_id", $id)->pluck("title");
     var_dump($posts);
 });
+
+Route::get("wherein", function()
+{
+    $posts = DB::table("posts")->whereIn("id", array(1,2,4))->get();
+
+    var_dump($posts);
+});
