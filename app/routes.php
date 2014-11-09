@@ -81,3 +81,10 @@ Route::get("posts/{id}", function ($id)
 
     var_dump($posts);
 });
+
+Route::get("paginacion/{offset}/{limit}", function($offset, $limit)
+{
+    $posts = DB::table("posts")->skip($offset)->take($limit)->get();
+    echo "<pre>";
+    var_dump($posts);
+});
