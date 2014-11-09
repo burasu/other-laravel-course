@@ -88,3 +88,8 @@ Route::get("paginacion/{offset}/{limit}", function($offset, $limit)
     echo "<pre>";
     var_dump($posts);
 });
+
+Route::get("pluck/{id}", function($id)
+{
+     
+});
